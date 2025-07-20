@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-const apiKey = import.meta.env.VITE_MAP_TILER_API_KEY
-
+const apiKey = import.meta.env.VITE_MAP_TILER_API_KEY;
 
 const Map = () => {
   const mapContainer = useRef(null);
@@ -19,7 +18,7 @@ const Map = () => {
       (err) => {
         console.warn('Geolocation failed, using fallback:', err.message);
         setLocationReady(true); // still render with fallback
-      }
+      },
     );
   }, []);
 
@@ -32,12 +31,11 @@ const Map = () => {
       center: coords,
       zoom: 12,
     });
-    
 
     new maplibregl.Marker().setLngLat(coords).addTo(mapRef.current);
   }, [locationReady, coords]);
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />;
+  return <div ref={mapContainer} style={{ width: '100vw', height: '100%' }} />;
 };
 
 export default Map;
