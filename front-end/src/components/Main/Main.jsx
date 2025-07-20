@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import './Main.css';
+import Map from '../../Map/Map';
 
 const Main = () => {
   return (
-    <div>Main</div>
-  )
-}
+    <main className='main'>
+      <Map />
+    </main>
+  );
+};
 
-export default Main
+export default Main;
