@@ -1,6 +1,4 @@
-
 import './Header.css';
-import logo from '../../assets/png-clipart-logo-idea-cute-eagle-leaf-logo-thumbnail.png';
 
 const Header = () => {
 
