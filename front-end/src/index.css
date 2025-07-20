@@ -1,1 +1,17 @@
 @import url("./vendor/fonts.css");
+
+:root {
+  --clr-background: hsl(0, 0%, 90%);
+  --clr-foreground: hsl(120, 7%, 15%);
+  --clr-accent: hsl(120, 5%, 25%);
+  --clr-primary: hsl(154, 21%, 66%);
+  --clr-marker: hsl(154, 40%, 40%);
+}
+
+.dark {
+  --clr-background: hsl(120, 7%, 15%);
+  --clr-foreground: hsl(0, 0%, 90%);
+  --clr-accent: hsl(120, 14%, 80%);
+  --clr-primary: hsl(154, 21%, 66%);
+  --clr-marker: hsl(154, 40%, 40%);
+}
