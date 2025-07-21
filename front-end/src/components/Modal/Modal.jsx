@@ -26,7 +26,7 @@ const Modal = ({ mode }) => {
             {mode === 'form' && (
               <>
                 <h1 className='modal__heading'>
-                  Select Your State Fuel Up & Find the Fun!
+                  Select Your State, Fuel Up & Find the Fun!
                 </h1>
                 <Dropdown />
               </>

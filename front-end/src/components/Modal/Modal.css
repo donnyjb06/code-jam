@@ -43,6 +43,7 @@
 
 .modal__heading {
   text-align: center;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
 }
 
 @media (width < 768px) {
@@ -92,7 +93,7 @@
     opacity: 0;
   }
 
-  .modal__form {
-    padding: 20px;
+  .modal__heading {
+    margin-inline: 20px;
   }
 }
