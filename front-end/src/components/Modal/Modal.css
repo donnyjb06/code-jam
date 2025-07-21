@@ -1,0 +1,26 @@
+.modal {
+  position: absolute;
+  width: min(300px, 100%);
+  top: 50px;
+  margin: 0 auto;
+  z-index: 3;
+  border-radius: 15px;
+  background-color: var(--clr-background);
+  padding: 65px 40px;
+  transition: 0.3;
+}
+
+.modal__close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  display: none;
+}
+
+@media (width < 768px) {
+  .modal__close-button {
+    display: block;
+  }
+}
