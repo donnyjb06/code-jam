@@ -8,6 +8,12 @@ html, body, #root {
   height: 100%;
 }
 
+body {
+  background-color: var(--clr-background);
+  color: var(--clr-foreground);
+  transition: 0.3s;
+}
+
 #root {
   overflow: hidden;
   display: flex;
