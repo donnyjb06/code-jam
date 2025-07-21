@@ -35,7 +35,7 @@ const Map = () => {
       center: coords,
       zoom: 12,
     });
-    console.log(mapRef.style)
+    console.log(mapRef.style);
 
     new maplibregl.Marker().setLngLat(coords).addTo(mapRef.current);
   }, [locationReady, coords]);
@@ -43,17 +43,38 @@ const Map = () => {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    const updateStyle = () => {
-      const newStyle = `https://api.maptiler.com/maps/${
-        theme === 'dark' ? 'streets-dark' : 'streets'
-      }/style.json?key=${apiKey}`;
-      mapRef.current.setStyle(newStyle);
+    const map = mapRef.current;
+
+    const newStyle = `https://api.maptiler.com/maps/${
+      theme === 'dark' ? 'streets-dark' : 'streets'
+    }/style.json?key=${apiKey}`;
+
+    let queuedStyle = null;
+
+    const applyStyle = () => {
+      map.setStyle(newStyle);
+
+      map.once('style.load', () => {
+        new maplibregl.Marker().setLngLat(coords).addTo(map);
+
+        // If the theme changed again during loading, apply the latest one
+        if (queuedStyle && queuedStyle !== newStyle) {
+          const nextStyle = queuedStyle;
+          queuedStyle = null;
+          map.setStyle(nextStyle);
+
+          map.once('style.load', () => {
+            new maplibregl.Marker().setLngLat(coords).addTo(map);
+          });
+        }
+      });
     };
 
-    if (mapRef.current.loaded()) {
-      updateStyle()
+    if (!map.isStyleLoaded()) {
+      queuedStyle = newStyle;
+      map.once('style.load', applyStyle);
     } else {
-      mapRef.current.once('load', updateStyle)
+      applyStyle();
     }
   }, [theme]);
 
