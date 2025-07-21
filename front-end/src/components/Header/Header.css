@@ -8,14 +8,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 25px;
-  background: rgba(0, 255, 33, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background-color: var(--clr-background);
+  transition: 0.3s;
 }
 
 .header__logo {
   font-family: "Nature Beauty";
   font-size: 1.6rem;
-  color: black;
+  color: var(--clr-foreground)
 }
