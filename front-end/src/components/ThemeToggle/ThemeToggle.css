@@ -1,0 +1,48 @@
+.toggle-button {
+  background-color: var(--clr-foreground);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.3s;
+}
+
+.toggle-button:hover {
+  transform: scale(1.1);
+}
+
+.toggle-button:active {
+  transform: scale(0.9);
+}
+
+.toggle-button__input {
+  appearance: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.theme-icon {
+  position: absolute;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none; /* Prevent interaction with hidden icon */
+}
+
+.theme-icon.visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.theme-icon.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+}
