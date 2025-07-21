@@ -1,0 +1,20 @@
+.footer {
+  background-color: var(--clr-background);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  min-height: 61px;
+}
+
+.__links {
+  color: var(--clr-foreground);
+  font-weight: 100;
+}
+
+.footer__link {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
