@@ -1,7 +1,7 @@
 import React from "react";
 import "./Modal.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
-import Dropdown from "../../Dropdown/index";
+import Dropdown from "../Dropdown/index";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 
