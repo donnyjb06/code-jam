@@ -1,5 +1,4 @@
 .footer {
-  background-color: var(--clr-background);
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -9,7 +8,6 @@
 }
 
 .__links {
-  color: var(--clr-foreground);
   font-weight: 100;
 }
 
