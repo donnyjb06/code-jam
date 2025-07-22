@@ -2,6 +2,18 @@
 
 <p id="description">This project is a React-based web app that helps users generate optimized travel routes within a selected U.S. state. Whether you're planning a road trip or sightseeing adventure the app selects the most efficient path between multiple points of interest based on how many stops you want to make.</p>
 
+<h2>🚀 Demo</h2>
+
+[https://code-jam-kohl.vercel.ap](https://code-jam-kohl.vercel.ap)
+
+<h2>Project Screenshots:</h2>
+
+<img src="./preview-desktop.png" alt="project-screenshot" width="400" height="255/">
+
+<img src="./preview-mobile-no-modal.jpeg" alt="project-screenshot" width="255" height="400/">
+
+<img src="./preview-mobile-modal.jpeg" alt="project-screenshot" width="255" height="400/">
+
   
   
 <h2>🧐 Features</h2>
