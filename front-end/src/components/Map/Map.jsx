@@ -35,7 +35,6 @@ const Map = () => {
       center: coords,
       zoom: 12,
     });
-    console.log(mapRef.style);
 
     new maplibregl.Marker().setLngLat(coords).addTo(mapRef.current);
   }, [locationReady, coords]);
