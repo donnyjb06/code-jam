@@ -7,6 +7,8 @@ import { motion } from 'motion/react';
 import { US_STATE_CODES } from '../../utils/constants';
 import useRoute from '../../hooks/useRoute';
 import Button from '../Button/Button';
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 const Modal = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,10 +20,17 @@ const Modal = () => {
     handleGenerateRoute,
     topNLocations,
     currentLocation,
-    handleCurrentLocationChange
+    handleCurrentLocationChange,
+    mode,
+    currentStop,
+    totalTime,
+    totalDistance,
+    currentIndex,
+    route,
+    getNextLocation,
+    getPreviousLocation,
+    resetRoute
   } = useRoute();
-
-  const [mode, setMode] = useState('form');
 
   return (
     <>
@@ -82,22 +91,51 @@ const Modal = () => {
                     onChange={handleCurrentLocationChange}
                     defaultSelected='Choose starting location'
                     disabled={!amountOfLocations || !selectedState}
-                    content={topNLocations.map(location => {
+                    content={topNLocations.map((location) => {
                       return (
-                        <option key={location.id}
-                        className='select__option'
-                        value={location.id}
-                        >{location.name}</option>
-                      )
+                        <option
+                          key={location.id}
+                          className='select__option'
+                          value={location.id}>
+                          {location.name}
+                        </option>
+                      );
                     })}
                   />
 
                   <Button
                     buttonText='Generate Route'
-                    disabled={!amountOfLocations || !selectedState}
+                    disabled={
+                      !amountOfLocations ||
+                      !selectedState ||
+                      !currentLocation.id
+                    }
                     handleClick={handleGenerateRoute}
                   />
                 </div>
+              </>
+            )}
+            {mode === 'preview' && (
+              <>
+                <button className='modal__cycle modal__cycle_previous' disabled={currentIndex === 0}><FaArrowLeft size="1.5rem" style={{color: 'var(--clr-foreground)'}} onClick={getPreviousLocation}/></button>
+                <button className='modal__cycle modal__cycle_next'disabled={currentIndex === route.length}><FaArrowRight size="1.5rem" style={{color: 'var(--clr-foreground)'}}onClick={getNextLocation}/></button>
+                <img className='modal__image' src={currentStop.image || "https://placehold.co/600x400"} />
+                <h1 className='modal__heading'>{currentStop.name}</h1>
+                <p className="modal__info">{`Stop #${currentIndex + 1}`}</p>
+                <p className='modal__address'>
+                  Address: <b>{currentStop.address}</b>
+                </p>
+                <p className='modal__info'>
+                  Total Distance: <b>{totalDistance} miles</b>{' '}
+                </p>
+                <p className='modal__info'>
+                  Estimated Driving Time:{' '}
+                  <b>
+                    {totalTime.hours === 0 ? '' : `${totalTime.hours} hrs`}{' '}
+                    {totalTime.minutes} mins
+                  </b>
+                </p>
+                <Button buttonText="Generate New Route" handleClick={resetRoute} disabled={false}/>
               </>
             )}
           </motion.div>
@@ -110,7 +148,7 @@ const Modal = () => {
         }`}
         initial={{ x: 0, y: 0 }}
         whileHover={{ x: 0, y: -5 }}>
-        <FaChevronUp style={{ color: 'var(--clr-foreground)' }} size={20} />
+        <FaChevronUp style={{ color: 'var(--clr-background)' }} size={20} />
       </motion.button>
     </>
   );

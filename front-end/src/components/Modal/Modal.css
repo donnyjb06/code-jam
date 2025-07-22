@@ -54,6 +54,50 @@
   font-size: clamp(1.5rem, 2.5vw, 2rem);
 }
 
+.modal__image {
+  max-width: 90%;
+  border-radius: 4px;
+}
+
+.modal__info {
+  text-wrap: nowrap;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.modal__cycle {
+  position: absolute;
+  top: 15px;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+.modal__cycle:hover {
+  scale: 1.05;
+}
+
+.modal__cycle:active {
+  scale: 0.95;
+}
+.modal__cycle_previous {
+  left: 15px;
+}
+
+.modal__cycle_next {
+  right: 15px;
+}
+
+.modal__cycle_next:hover {
+  translate: 3px 0;
+}
+
+.modal__cycle_previous:hover {
+  translate: -3px 0;
+}
+
 @media (width < 768px) {
   .modal__close-button {
     display: block;
@@ -85,7 +129,7 @@
     bottom: 100px;
     right: 25px;
     z-index: 4;
-    background-color: var(--clr-background);
+    background-color: var(--clr-foreground);
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -106,6 +150,19 @@
   }
 
   .modal__inputs {
-    flex-direction: row
+    flex-direction: row;
+  }
+
+  .modal__cycle {
+    bottom: 30px;
+    top: auto;
+  }
+
+  .modal__image {
+    max-width: 60%;
+  }
+
+  .modal__form {
+    gap: 10px;
   }
 }

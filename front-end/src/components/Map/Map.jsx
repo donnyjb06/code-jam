@@ -11,7 +11,7 @@ const Map = () => {
   const [locationReady, setLocationReady] = useState(false);
   const [coords, setCoords] = useState([-84.388, 33.749]);
   const { theme } = useTheme();
-  const { currentLocation, route } = useRoute();
+  const { currentLocation, route, currentStop } = useRoute();
   const markers = useRef([]);
 
   useEffect(() => {
@@ -22,13 +22,18 @@ const Map = () => {
       },
       (err) => {
         console.warn('Geolocation failed, using fallback:', err.message);
-        setLocationReady(true); // still render with fallback
+        setLocationReady(true);
       },
     );
   }, []);
 
   useEffect(() => {
-    if (!mapRef.current || !currentLocation.longitude) return;
+    if (
+      !mapRef.current ||
+      !currentLocation ||
+      Object.keys(currentLocation).length === 0
+    )
+      return;
 
     mapRef.current.flyTo({
       center: [currentLocation.longitude, currentLocation.latitude],
@@ -40,83 +45,94 @@ const Map = () => {
   }, [currentLocation]);
 
   useEffect(() => {
-    if (!route?.length || !mapRef.current) return;
-  
+    if (!mapRef.current) return;
+
     const map = mapRef.current;
     const sourceId = 'route-anim-src';
-    const layerId  = 'route-anim-line';
-  
-    // 1) Clear old markers
-    markers.current.forEach(m => m.remove());
+    const layerId = 'route-anim-line';
+
+    // Always remove previous layers, sources, and markers
+    if (map.getLayer(layerId)) map.removeLayer(layerId);
+    if (map.getSource(sourceId)) map.removeSource(sourceId);
+    markers.current.forEach((m) => m.remove());
     markers.current = [];
-  
-    // 2) Add fresh markers + popups
-    route.forEach(loc => {
-      const popup = new maplibregl.Popup({ offset: 25 }).setText(loc.name);
+
+    if (!route?.length) return;
+
+    route.forEach((location) => {
+      const popup = new maplibregl.Popup({ offset: 25 }).setText(location.name);
       const marker = new maplibregl.Marker({ color: '#3d8f6b' })
-        .setLngLat([loc.longitude, loc.latitude])
+        .setLngLat([location.longitude, location.latitude])
         .setPopup(popup)
         .addTo(map);
       markers.current.push(marker);
 
-      const el = marker.getElement()
-      const onClick = () => {}
+      const el = marker.getElement();
+      const onClick = () => {};
     });
-  
-    // 3) Fly to start
+
     map.flyTo({
       center: [route[0].longitude, route[0].latitude],
-      zoom: 12,
+      zoom: 9,
       curve: 1.42,
       speed: 2,
-      essential: true
+      essential: true,
     });
-  
-    // 4) Prep/replace source & layer for animated line
-    if (map.getLayer(layerId)) map.removeLayer(layerId);
-    if (map.getSource(sourceId)) map.removeSource(sourceId);
-  
+
     const data = {
       type: 'Feature',
-      geometry: { type: 'LineString', coordinates: [] }
+      geometry: { type: 'LineString', coordinates: [] },
     };
-  
+
     map.addSource(sourceId, { type: 'geojson', data });
     map.addLayer({
       id: layerId,
       type: 'line',
       source: sourceId,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: { 'line-width': 4, 'line-color': '#ff7e5f' }
+      paint: { 'line-width': 4, 'line-color': '#ff7e5f' },
     });
-  
-    // 5) Animate coordinates in
-    const coords = route.map(p => [p.longitude, p.latitude]);
+
+    const coords = route.map((p) => [p.longitude, p.latitude]);
     let i = 0;
     const INTERVAL_MS = 150;
     const intervalId = setInterval(() => {
-      if (i > coords.length) {
-        clearInterval(intervalId)
-        return
+      const source = map.getSource(sourceId);
+      if (i >= coords.length || !source || !coords[i]) {
+        clearInterval(intervalId);
+        return;
       }
 
-      data.geometry.coordinates.push(coords[i])
-      map.getSource(sourceId).setData(data)
-      i++
-    }, INTERVAL_MS)
+      data.geometry.coordinates.push(coords[i]);
+      source.setData(data);
+      i++;
+    }, INTERVAL_MS);
 
-
-  
-    // 6) Cleanup on unmount / route change
     return () => {
-      clearInterval(intervalId)
+      clearInterval(intervalId);
       if (map.getLayer(layerId)) map.removeLayer(layerId);
       if (map.getSource(sourceId)) map.removeSource(sourceId);
-      markers.current.forEach(m => m.remove());
+      markers.current.forEach((m) => m.remove());
       markers.current = [];
     };
   }, [route]);
-  
+
+  useEffect(() => {
+    if (
+      !mapRef.current ||
+      !currentStop ||
+      Object.keys(currentStop).length === 0
+    )
+      return;
+
+    mapRef.current.flyTo({
+      center: [currentStop.longitude, currentStop.latitude],
+      zoom: 12,
+      curve: 1.42,
+      speed: 2,
+      essential: true,
+    });
+  }, [currentStop]);
 
   useEffect(() => {
     if (!locationReady || mapRef.current) return;
@@ -148,7 +164,46 @@ const Map = () => {
       map.once('style.load', () => {
         new maplibregl.Marker().setLngLat(coords).addTo(map);
 
-        // If the theme changed again during loading, apply the latest one
+        if (route?.length) {
+          const sourceId = 'route-anim-src';
+          const layerId = 'route-anim-line';
+
+          if (map.getLayer(layerId)) map.removeLayer(layerId);
+          if (map.getSource(sourceId)) map.removeSource(sourceId);
+
+          const lineCoords = route.map((p) => [p.longitude, p.latitude]);
+
+          map.addSource(sourceId, {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              geometry: { type: 'LineString', coordinates: lineCoords },
+            },
+          });
+
+          map.addLayer({
+            id: layerId,
+            type: 'line',
+            source: sourceId,
+            layout: { 'line-join': 'round', 'line-cap': 'round' },
+            paint: { 'line-width': 4, 'line-color': '#ff7e5f' },
+          });
+
+          markers.current.forEach((m) => m.remove());
+          markers.current = [];
+
+          route.forEach((location) => {
+            const popup = new maplibregl.Popup({ offset: 25 }).setText(
+              location.name,
+            );
+            const marker = new maplibregl.Marker({ color: '#3d8f6b' })
+              .setLngLat([location.longitude, location.latitude])
+              .setPopup(popup)
+              .addTo(map);
+            markers.current.push(marker);
+          });
+        }
+
         if (queuedStyle && queuedStyle !== newStyle) {
           const nextStyle = queuedStyle;
           queuedStyle = null;
