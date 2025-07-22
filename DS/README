@@ -1,1 +1,69 @@
+Title: SightSee USA
+
+Project Overview
+
+This project aims to create an optimized travel route for summer road trips across the United States, helping users explore the most popular and scenic destinations efficiently. By leveraging real-world data such as user ratings and review counts, it generates smart itineraries that minimize travel distance and time while ensuring each location is visited only once.
+
+Key Features
+•	Select the number of destinations to visit and choose a starting point
+•	Generate an optimal travel route with minimized total distance
+•	Calculate total travel distance and estimated driving time
+•	Interactive map visualization of both baseline (random) and optimized routes
+•	Filtering options by state, destination popularity, starting point
+•	Trip summary highlighting total distance, total time, and number of stops
+
+Project Structure
+The project is divided into three main stages:
+1. Data Collection and Preparation
+•	Load and clean the dataset of U.S. tourist destinations
+•	Enrich data with latitude and longitude using the Google Maps API
+•	Clean data by removing duplicates, missing values, and validating geographic info
+•	Prepare data for modeling and route optimization
+2. Route Optimization
+•	Create a baseline route by randomly ordering selected destinations
+•	Implement the Nearest Neighbor algorithm to find the shortest possible route
+•	Calculate and compare total distance and travel time between baseline and optimized routes
+•	Use a weighted score metric combining user ratings and review counts for destination ranking
+3. Data Visualization
+•	Plot baseline and optimized routes on interactive maps for easy comparison
+•	Visualize category distribution of destinations (e.g., Cultural, Nature) within a selected state
+•	Provide clear, user-friendly visuals to support travel planning
+
+Dataset
+•	Source: Global Tourist Hotspots - US, India, Iran (Kaggle)
+•	The dataset is enriched with latitude and longitude coordinates using Google Maps API
+
+How to Run
+1.	Load and preprocess the dataset.
+2.	Generate baseline route by random selection.
+3.	Optimize the route using the Nearest Neighbor algorithm.
+4.	Calculate total travel distance and time for both routes.
+5.	Visualize routes and category distributions.
+
+Results
+•	The optimized route reduced travel distance by approximately 45% compared to the baseline.
+•	Optimization algorithm runs efficiently, completing in under 0.05 seconds.
+•	Visualizations highlight route improvements and destination category distribution for user insights.
+
+Technologies Used
+•	Python – Primary programming language for data processing and modeling
+•	Pandas – Data manipulation and analysis
+•	NumPy – Numerical computing and array operations
+•	Geopy – Calculating geographic distances between coordinates
+•	Plotly – Interactive data visualization and mapping
+•	Google Maps API – Retrieving geographic coordinates (latitude & longitude)
+•	Jupyter Notebook – Development environment for running and testing code
+•	Kaggle – Dataset source and initial data exploration
+
+## Setup
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the app locally using: `streamlit run app.py`
+
+## URL of your app on Render: https://project-11-2-sl5v.onrender.com/
+
+Future Improvements
+•	Include real-time traffic data for dynamic route adjustments
+•	Add user preferences for types of attractions and visit durations
+•	Expand coverage beyond the USA
 
