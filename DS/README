@@ -1,10 +1,10 @@
-Title: SightSee USA
+# Title: SightSee USA
 
-Project Overview
+## Project Overview
 
 This project aims to create an optimized travel route for summer road trips across the United States, helping users explore the most popular and scenic destinations efficiently. By leveraging real-world data such as user ratings and review counts, it generates smart itineraries that minimize travel distance and time while ensuring each location is visited only once.
 
-Key Features
+## Key Features
 •	Select the number of destinations to visit and choose a starting point
 •	Generate an optimal travel route with minimized total distance
 •	Calculate total travel distance and estimated driving time
@@ -12,7 +12,7 @@ Key Features
 •	Filtering options by state, destination popularity, starting point
 •	Trip summary highlighting total distance, total time, and number of stops
 
-Project Structure
+## Project Structure
 The project is divided into three main stages:
 1. Data Collection and Preparation
 •	Load and clean the dataset of U.S. tourist destinations
@@ -29,23 +29,23 @@ The project is divided into three main stages:
 •	Visualize category distribution of destinations (e.g., Cultural, Nature) within a selected state
 •	Provide clear, user-friendly visuals to support travel planning
 
-Dataset
+## Dataset
 •	Source: Global Tourist Hotspots - US, India, Iran (Kaggle)
 •	The dataset is enriched with latitude and longitude coordinates using Google Maps API
 
-How to Run
+## How to Run
 1.	Load and preprocess the dataset.
 2.	Generate baseline route by random selection.
 3.	Optimize the route using the Nearest Neighbor algorithm.
 4.	Calculate total travel distance and time for both routes.
 5.	Visualize routes and category distributions.
 
-Results
+## Results
 •	The optimized route reduced travel distance by approximately 45% compared to the baseline.
 •	Optimization algorithm runs efficiently, completing in under 0.05 seconds.
 •	Visualizations highlight route improvements and destination category distribution for user insights.
 
-Technologies Used
+## Technologies Used
 •	Python – Primary programming language for data processing and modeling
 •	Pandas – Data manipulation and analysis
 •	NumPy – Numerical computing and array operations
@@ -62,7 +62,7 @@ Technologies Used
 
 ## URL of your app on Render: https://project-11-2-sl5v.onrender.com/
 
-Future Improvements
+## Future Improvements
 •	Include real-time traffic data for dynamic route adjustments
 •	Add user preferences for types of attractions and visit durations
 •	Expand coverage beyond the USA
