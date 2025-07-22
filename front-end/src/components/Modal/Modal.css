@@ -41,6 +41,14 @@
   gap: 33px;
 }
 
+.modal__inputs {
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+  align-self: stretch;
+  flex-direction: column;
+}
+
 .modal__heading {
   text-align: center;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
@@ -95,5 +103,9 @@
 
   .modal__heading {
     margin-inline: 20px;
+  }
+
+  .modal__inputs {
+    flex-direction: row
   }
 }
