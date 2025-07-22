@@ -32,6 +32,10 @@ const Modal = () => {
     resetRoute
   } = useRoute();
 
+  const isNotUndefined = !!currentStop
+
+  const imgSrc = isNotUndefined && currentStop.image ? currentStop.image : "https://placehold.co/600x400";
+
   return (
     <>
       <div className={`modal ${isOpen ? 'modal_open' : ''}`}>
@@ -119,7 +123,7 @@ const Modal = () => {
               <>
                 <button className='modal__cycle modal__cycle_previous' disabled={currentIndex === 0}><FaArrowLeft size="1.5rem" style={{color: 'var(--clr-foreground)'}} onClick={getPreviousLocation}/></button>
                 <button className='modal__cycle modal__cycle_next'disabled={currentIndex === route.length}><FaArrowRight size="1.5rem" style={{color: 'var(--clr-foreground)'}}onClick={getNextLocation}/></button>
-                <img className='modal__image' src={currentStop.image || "https://placehold.co/600x400"} />
+                <img className='modal__image' src={imgSrc} />
                 <h1 className='modal__heading'>{currentStop.name}</h1>
                 <p className="modal__info">{`Stop #${currentIndex + 1}`}</p>
                 <p className='modal__address'>

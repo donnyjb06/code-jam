@@ -150,7 +150,7 @@
   }
 
   .modal__inputs {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .modal__cycle {
