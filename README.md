@@ -8,22 +8,16 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="./preview-desktop.png" alt="project-screenshot" width="400" height="255/">
+<img src="./preview-desktop.png" alt="project-screenshot" width="600" height="338/">
 
-<img src="./preview-mobile-no-modal.jpeg" alt="project-screenshot" width="255" height="400/">
-
-<img src="./preview-mobile-modal.jpeg" alt="project-screenshot" width="255" height="400/">
-
-  
-  
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
 
-*   Dark and Light modes
-*   Optimized Routing
-*   Polished Animations
-*   Trip Customization
+- Dark and Light modes
+- Optimized Routing
+- Polished Animations
+- Trip Customization
 
 <h2>🛠️ Installation Steps:</h2>
 
@@ -63,16 +57,14 @@ VITE_MAP_TILER_API_KEY=3x4mp1e-4pi-k3y
 npm run dev
 ```
 
-  
-  
 <h2>💻 Built with</h2>
 
 Technologies used in the project:
 
-*   React
-*   Framer Motion
-*   Wikipedia Images API
-*   MaplibreJS
+- React
+- Framer Motion
+- Wikipedia Images API
+- MaplibreJS
 
 <h2>🛡️ License:</h2>
 
