@@ -1,8 +1,8 @@
 July 2025 Code Jam
 July DS+SE Code Jam (2025)
 
-SE Participants: Donovan Jabbar, JJ Plamoottil, and Cassandra Peterson
-DS Participants: Jeneena, William Mazzeo
+**SE Participants: Donovan Jabbar, JJ Plamoottil, and Cassandra Peterson
+**DS Participants: Jeneena, William Mazzeo
 
 **For the July Code Jam, we challenge the participants to create an optimal route for summer vacations.** 
 
