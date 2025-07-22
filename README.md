@@ -4,7 +4,7 @@
 
 <h2>🚀 Demo & Figma</h2>
 
-[Preview Project Demo](https://code-jam-kohl.vercel.ap)
+[Preview Project Demo](https://code-jam-kohl.vercel.app/)
 [View Figma Design](https://www.figma.com/design/ezhYFhBBlEThr500wM9lJN/Code-Jam?node-id=0-1&p=f&t=hHY9YaafRInQuYp3-0)
 
 <h2>Project Screenshots:</h2>
