@@ -1,6 +1,5 @@
 const US_STATE_CODES = {
   AL: "Alabama",
-  AK: "Alaska",
   AZ: "Arizona",
   AR: "Arkansas",
   CA: "California",
@@ -49,3 +48,7 @@ const US_STATE_CODES = {
   WI: "Wisconsin",
   WY: "Wyoming"
 };
+
+const MILES_PER_METERS = 1609;
+
+export {US_STATE_CODES, MILES_PER_METERS}

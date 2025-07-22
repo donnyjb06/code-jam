@@ -1,0 +1,36 @@
+.select-custom-wrapper {
+  flex: 1;
+  display: flex;
+  position: relative;
+  min-width: 50%;
+}
+
+.select {
+  background-color: var(--clr-accent);
+  color: var(--clr-background);
+  padding: 8px 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  align-self: stretch;
+  border-radius: 5px;
+  border: 1px solid var(--clr-foreground);
+  cursor: pointer;
+  transition: 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+}
+
+.select:hover,
+.select:focus {
+  outline: none;
+  border: 1px solid var(--clr-primary);
+}
+
+.select__arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  translate: 0 -50%;
+}

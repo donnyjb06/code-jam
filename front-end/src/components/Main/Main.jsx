@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 const Main = () => {
   return (
     <main className='main'>
-      <Modal mode="form"/>
+      <Modal />
       <Map />
     </main>
   );
