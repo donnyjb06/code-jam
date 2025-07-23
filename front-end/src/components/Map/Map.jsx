@@ -51,7 +51,6 @@ const Map = () => {
     const sourceId = 'route-anim-src';
     const layerId = 'route-anim-line';
 
-    // Always remove previous layers, sources, and markers
     if (map.getLayer(layerId)) map.removeLayer(layerId);
     if (map.getSource(sourceId)) map.removeSource(sourceId);
     markers.current.forEach((m) => m.remove());
