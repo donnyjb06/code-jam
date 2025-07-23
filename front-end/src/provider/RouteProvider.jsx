@@ -47,7 +47,7 @@ const RouteProvider = ({ children }) => {
   }, [filteredLocations]);
 
   useEffect(() => {
-    if (Object.keys(currentLocation).length === 0 || !topNLocations.length) return;
+    if (!currentLocation || Object.keys(currentLocation).length === 0 || !topNLocations.length) return;
 
     setCurrentLocation(topNLocations[0]);
   }, [topNLocations]);
@@ -95,12 +95,14 @@ const RouteProvider = ({ children }) => {
   };
 
   const handleAmountChange = (e) => {
-    setAmountOfLocations(e.target.value);
+    const value = Number(e.target.value);
+    setAmountOfLocations(value)
+    if (!selectedState) return
     setTopNLocations((prevLocations) => {
-      if (e.target.value < prevLocations.length) {
-        return prevLocations.splice(0, e.target.value);
+      if (value< prevLocations.length) {
+        return prevLocations.splice(0, value);
       }
-      const newTopNLocations = getTopNLocations(filteredLocations, e.target.value)
+      const newTopNLocations = getTopNLocations(filteredLocations, value)
 
       return newTopNLocations
     });
